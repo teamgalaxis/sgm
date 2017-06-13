@@ -24,7 +24,7 @@
 #include <stdint.h>
 
 #define LOG						false
-#define WRITE_FILES				true
+#define WRITE_FILES				false
 
 #define PATH_AGGREGATION	4
 #define	MAX_DISPARITY		128
