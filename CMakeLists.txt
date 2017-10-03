@@ -20,6 +20,8 @@ project(sgm)
 find_package( OpenCV REQUIRED )
 find_package( CUDA REQUIRED )
 
+include_directories(include ${INCLUDE_DIRS} ${CUDA_INCLUDE_DIRS})
+
 set(
     CUDA_NVCC_FLAGS
     ${CUDA_NVCC_FLAGS};
