@@ -7,7 +7,6 @@
 #include "debug.h"
 #include "api.h"
 
-
 cudaStream_t sgm::stream1, sgm::stream2, sgm::stream3;//, stream4, stream5, stream6, stream7, stream8;
 uint8_t *sgm::d_im0;
 uint8_t *sgm::d_im1;
@@ -30,7 +29,7 @@ uint8_t sgm::p1, sgm::p2;
 bool sgm::first_alloc;
 uint32_t sgm::cols, sgm::rows, sgm::size, sgm::size_cube_l;
 
-sgm::sgm(uint8_t p1, uint8_t p2) {
+sgm::sgm(uint8_t _p1, uint8_t _p2) {
   CUDA_CHECK_RETURN(cudaStreamCreate(&stream1));
   CUDA_CHECK_RETURN(cudaStreamCreate(&stream2));
   CUDA_CHECK_RETURN(cudaStreamCreate(&stream3));
@@ -38,7 +37,8 @@ sgm::sgm(uint8_t p1, uint8_t p2) {
   rows = 0;
   cols = 0;
 
-  init_disparity_method(p1, p2);
+  p1 = _p1;
+  p2 = _p2;
 }
 
 void sgm::calcDisparity(cv::Mat im0, cv::Mat im1, cv::Mat &disp) {
