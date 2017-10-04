@@ -28,7 +28,7 @@ typedef uint32_t cost_t;
 class sgm {
 
 public:
-  sgm();
+  sgm(uint8_t, uint8_t);
   void calcDisparity(cv::Mat im0, cv::Mat im1, cv::Mat &disp);
 
 private:

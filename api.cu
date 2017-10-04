@@ -30,13 +30,15 @@ uint8_t sgm::p1, sgm::p2;
 bool sgm::first_alloc;
 uint32_t sgm::cols, sgm::rows, sgm::size, sgm::size_cube_l;
 
-sgm::sgm() {
+sgm::sgm(uint8_t p1, uint8_t p2) {
   CUDA_CHECK_RETURN(cudaStreamCreate(&stream1));
   CUDA_CHECK_RETURN(cudaStreamCreate(&stream2));
   CUDA_CHECK_RETURN(cudaStreamCreate(&stream3));
   first_alloc = true;
   rows = 0;
   cols = 0;
+
+  init_disparity_method(p1, p2);
 }
 
 void sgm::calcDisparity(cv::Mat im0, cv::Mat im1, cv::Mat &disp) {
