@@ -23,16 +23,16 @@
 
 #include <stdint.h>
 
-#define LOG						false
+#define LOG						true
 #define WRITE_FILES				false
 
 #define PATH_AGGREGATION	4
-#define	MAX_DISPARITY		128
+#define	MAX_DISPARITY		64
 #define CENSUS_WIDTH		9
 #define CENSUS_HEIGHT		7
 
-#define OCCLUDED_PIXEL		128
-#define MISMATCHED_PIXEL	129
+#define OCCLUDED_PIXEL		25
+#define MISMATCHED_PIXEL	26
 
 #define TOP				(CENSUS_HEIGHT-1)/2
 #define LEFT			(CENSUS_WIDTH-1)/2
