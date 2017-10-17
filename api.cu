@@ -134,7 +134,7 @@ void sgm::calcDisparity(cv::Mat im0, cv::Mat im1, cv::Mat &disp) {
 
   disp = cv::Mat(rows,cols,CV_8UC1,h_disparity);
 
-  /*
+
   CUDA_CHECK_RETURN(cudaFree(d_transform0));
   CUDA_CHECK_RETURN(cudaFree(d_transform1));
   CUDA_CHECK_RETURN(cudaFree(d_cost));
@@ -155,5 +155,5 @@ void sgm::calcDisparity(cv::Mat im0, cv::Mat im1, cv::Mat &disp) {
 
   CUDA_CHECK_RETURN(cudaFree(d_disparity));
   CUDA_CHECK_RETURN(cudaFree(d_disparity_filtered_uchar));
-*/
+
 }
