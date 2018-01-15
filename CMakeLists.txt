@@ -26,22 +26,13 @@ set(
     CUDA_NVCC_FLAGS
     ${CUDA_NVCC_FLAGS};
     -O3 -lineinfo
-    # Nvidia Jetson
-    -gencode=arch=compute_53,code=sm_53;
-    # The beast in the office
-    -gencode=arch=compute_61,code=sm_61
+    -gencode arch=compute_62,code=sm_62
     -std=c++11
 )
-
-cuda_add_executable(
-    sgm
-    main.cu median_filter.cu hamming_cost.cu disparity_method.cu debug.cu costs.cu)
 
 cuda_add_library(
   sgm_api
         api.cu median_filter.cu hamming_cost.cu debug.cu costs.cu
   SHARED)
 
-
-target_link_libraries( sgm ${OpenCV_LIBS} )
 target_link_libraries( sgm_api ${OpenCV_LIBS} ${CUDA_LIBRARIES})
