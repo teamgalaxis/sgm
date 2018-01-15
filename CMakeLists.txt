@@ -26,6 +26,11 @@ set(
     CUDA_NVCC_FLAGS
     ${CUDA_NVCC_FLAGS};
     -O3 -lineinfo
+    # Nvidia Jetson TX1
+    -gencode=arch=compute_53,code=sm_53;
+    # The beast in the office
+    -gencode=arch=compute_61,code=sm_61;
+    # Nvidia Jetson TX2
     -gencode arch=compute_62,code=sm_62
     -std=c++11
 )
@@ -36,3 +41,5 @@ cuda_add_library(
   SHARED)
 
 target_link_libraries( sgm_api ${OpenCV_LIBS} ${CUDA_LIBRARIES})
+
+add_dependencies(sgm_api sgm)
