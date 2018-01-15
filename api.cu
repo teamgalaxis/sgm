@@ -88,10 +88,10 @@ void sgm::calcDisparity(cv::Mat left, cv::Mat right, cv::Mat &disp) {
 	CUDA_CHECK_RETURN(cudaMemcpyAsync(d_im0, left.ptr<uint8_t>(), sizeof(uint8_t)*size, cudaMemcpyHostToDevice, stream1));
 	CUDA_CHECK_RETURN(cudaMemcpyAsync(d_im1, right.ptr<uint8_t>(), sizeof(uint8_t)*size, cudaMemcpyHostToDevice, stream1));
 
-	cudaEvent_t start, stop;
-	cudaEventCreate(&start);
-	cudaEventCreate(&stop);
-	cudaEventRecord(start, 0);
+	//cudaEvent_t start, stop;
+	//cudaEventCreate(&start);
+	//cudaEventCreate(&stop);
+	//cudaEventRecord(start, 0);
 
 	dim3 block_size;
 	block_size.x = 32;
@@ -131,13 +131,12 @@ void sgm::calcDisparity(cv::Mat left, cv::Mat right, cv::Mat &disp) {
 	
 	MedianFilter3x3<<<(size+MAX_DISPARITY-1)/MAX_DISPARITY, MAX_DISPARITY, 0, stream1>>>(d_disparity, d_disparity_filtered_uchar, rows, cols);
 
-	cudaEventRecord(stop, 0);
+	//cudaEventRecord(stop, 0);
 	CUDA_CHECK_RETURN(cudaDeviceSynchronize());
-	cudaEventElapsedTime(elapsed_time_ms, start, stop);
-	cudaEventDestroy(start);
-	cudaEventDestroy(stop);
+	//cudaEventElapsedTime(elapsed_time_ms, start, stop);
+	//cudaEventDestroy(start);
+	//cudaEventDestroy(stop);
 
-	debug_log("Copying final disparity to CPU");
 	CUDA_CHECK_RETURN(cudaMemcpy(h_disparity, d_disparity_filtered_uchar, sizeof(uint8_t)*size, cudaMemcpyDeviceToHost));
 
 	disp = cv::Mat(rows, cols, CV_8UC1, h_disparity);
