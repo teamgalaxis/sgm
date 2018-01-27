@@ -23,7 +23,7 @@
 
 #include <stdint.h>
 
-#define LOG						true
+#define LOG						false
 #define WRITE_FILES				false
 
 #define PATH_AGGREGATION	4
